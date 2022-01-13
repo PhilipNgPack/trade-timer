@@ -17,7 +17,7 @@ class App extends Component {
     });
   };
 
-  handleAdd = (tradeLog) => {
+  handleAdd = (tradeLog: any) => {
     this.setState({ tradeLogs: [...this.state.tradeLogs, tradeLog] });
   };
 
