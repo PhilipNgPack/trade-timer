@@ -40,41 +40,48 @@ class Form extends Component<any, any> {
 
     return (
       <form>
-        <label htmlFor={"buy"}>buy transaction</label>
-        <input
-          type={"radio"}
-          id={"buy"}
-          name={"transactionType"}
-          value={"buy"}
-          checked={transactionType === "last bought"}
-          onChange={this.handleBuy}
-        />
-        <label htmlFor={"sell"}>sell transaction</label>
-        <input
-          type={"radio"}
-          id={"sell"}
-          name={"transactionType"}
-          value={"sell"}
-          checked={transactionType === "last sold"}
-          onChange={this.handleSell}
-        />
+        <div className="transactionType">
+          <label htmlFor={"buy"}>buy transaction</label>
+          <input
+            type={"radio"}
+            id={"buy"}
+            name={"transactionType"}
+            value={"buy"}
+            checked={transactionType === "last bought"}
+            onChange={this.handleBuy}
+          />
+          <label htmlFor={"sell"}>sell transaction</label>
+          <input
+            type={"radio"}
+            id={"sell"}
+            name={"transactionType"}
+            value={"sell"}
+            checked={transactionType === "last sold"}
+            onChange={this.handleSell}
+          />
+        </div>
 
-        <label htmlFor={"symbol"}>symbol</label>
-        <input
-          type={"text"}
-          name={"symbol"}
-          id={"symbol"}
-          value={symbol}
-          onChange={this.handleChange}
-        />
-        <label htmlFor={"orderDate"}>order date</label>
-        <input
-          type={"date"}
-          name={"orderDate"}
-          id={"orderDate"}
-          value={orderDate}
-          onChange={this.handleChange}
-        />
+        <div className="symbol">
+          <label htmlFor={"symbol"}>symbol</label>
+          <input
+            type={"text"}
+            name={"symbol"}
+            id={"symbol"}
+            value={symbol}
+            onChange={this.handleChange}
+          />
+        </div>
+
+        <div className="orderDate">
+          <label htmlFor={"orderDate"}>order date</label>
+          <input
+            type={"date"}
+            name={"orderDate"}
+            id={"orderDate"}
+            value={orderDate}
+            onChange={this.handleChange}
+          />
+        </div>
         <input type={"button"} value={"add"} onClick={this.submitForm} />
       </form>
     );
