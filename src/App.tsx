@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component, useState } from "react";
+import Table from "./Table";
+import Form from "./Form";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    tradeLogs: [],
+  };
+
+  removeTradeLog = (index: number) => {
+    const { tradeLogs } = this.state;
+
+    this.setState({
+      tradeLogs: tradeLogs.filter((tradeLog, i: number) => {
+        return i !== index;
+      }),
+    });
+  };
+
+  handleAdd = (tradeLog) => {
+    this.setState({ tradeLogs: [...this.state.tradeLogs, tradeLog] });
+  };
+
+  render() {
+    const { tradeLogs } = this.state;
+
+    return (
+      <div className="container">
+        <Table tradeLogData={tradeLogs} removeTradeLog={this.removeTradeLog} />
+        <Form handleAdd={this.handleAdd} />
+      </div>
+    );
+  }
 }
 
 export default App;
