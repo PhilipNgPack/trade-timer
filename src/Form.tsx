@@ -16,19 +16,7 @@ class Form extends Component<any, any> {
 
     this.setState({
       [name]: value,
-    });
-  };
-
-  // can simplify: if not a buy, must be a sell
-  handleBuy = () => {
-    this.setState({
-      TransactionType: "bought",
-    });
-  };
-
-  handleSell = () => {
-    this.setState({
-      TransactionType: "sold",
+      TransactionType: [value == "buy" ? "bought" : "sold"],
     });
   };
 
@@ -50,7 +38,7 @@ class Form extends Component<any, any> {
             name={"transactionType"}
             value={"buy"}
             checked={TransactionType === "bought"}
-            onChange={this.handleBuy}
+            onChange={this.handleChange}
           />
           <label htmlFor={"sell"}>sell transaction</label>
           <input
@@ -59,7 +47,7 @@ class Form extends Component<any, any> {
             name={"transactionType"}
             value={"sell"}
             checked={TransactionType === "sold"}
-            onChange={this.handleSell}
+            onChange={this.handleChange}
           />
         </div>
 

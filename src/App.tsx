@@ -3,13 +3,24 @@ import Table from "./Table";
 import Form from "./Form";
 
 export const EditTrade = () => {
+  const initialFormState = {
+    id: null,
+    symbol: "",
+    orderDate: "",
+    transactionType: "",
+  };
   // initial form state for currentlyEdit
-  const [currentlyEditTradeLog, setCurrentlyEditTradeLog] = useState(
-    tradelog | undefined
-  );
+  const [tradeLogBeingEdited, setTradeLogBeingEdited] =
+    useState(initialFormState);
 
   const editRow = (trade: any) => {
-    setCurrentlyEditTradeLog(trade);
+    console.log("Hello world!");
+    setTradeLogBeingEdited({
+      id: trade.id,
+      symbol: trade.symbol,
+      orderDate: trade.orderDate,
+      transactionType: trade.transactionType,
+    });
   };
 };
 
