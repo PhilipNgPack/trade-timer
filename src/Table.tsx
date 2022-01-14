@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import type { Row } from "./Types";
 
 const TableHeader = () => {
@@ -19,16 +18,10 @@ interface Props {
   editRow: any;
 }
 
-const Table = (props: {
-  tradeLogData: any;
-  removeTradeLog: any;
-  editRow: any;
-}) => {
-  const { tradeLogData, removeTradeLog, editRow } = props;
-
+const Table = (props: Props) => {
   const TableBody = (
     <tbody>
-      {tradeLogData.map((row: Row, index: number) => {
+      {props.tradeLogData.map((row: Row, index: number) => {
         return (
           <tr key={index}>
             <td>{row.symbol}</td>

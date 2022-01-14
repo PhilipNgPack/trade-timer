@@ -1,15 +1,20 @@
 import React, { Component } from "react";
 
+type Props = {
+  symbol: "";
+  orderDate: "";
+};
+
+// any, any --> Props, State
 class Form extends Component<any, any> {
   initialState = {
     symbol: "",
     orderDate: "",
-    transactionType: "",
   };
 
   state = this.initialState;
 
-  handleChange = (event: { target: { name: any; value: any } }) => {
+  handleChange = (event: { target: { name: string; value: string } }) => {
     const { name, value } = event.target;
 
     this.setState({
