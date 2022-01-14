@@ -4,4 +4,4 @@ export interface Row {
   transactionType: string;
 }
 
-export type TransactionType = "buy" | "sell";
+export type TransactionType = "bought" | "sold";

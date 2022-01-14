@@ -1,15 +1,12 @@
 import React, { Component } from "react";
-
-type Props = {
-  symbol: "";
-  orderDate: "";
-};
+import type { TransactionType } from "./Types";
 
 // any, any --> Props, State
 class Form extends Component<any, any> {
   initialState = {
     symbol: "",
     orderDate: "",
+    TransactionType: "buy",
   };
 
   state = this.initialState;
@@ -25,13 +22,13 @@ class Form extends Component<any, any> {
   // can simplify: if not a buy, must be a sell
   handleBuy = () => {
     this.setState({
-      transactionType: "last bought",
+      TransactionType: "bought",
     });
   };
 
   handleSell = () => {
     this.setState({
-      transactionType: "last sold",
+      TransactionType: "sold",
     });
   };
 
@@ -41,7 +38,7 @@ class Form extends Component<any, any> {
   };
 
   render() {
-    const { symbol, orderDate, transactionType } = this.state;
+    const { symbol, orderDate, TransactionType } = this.state;
 
     return (
       <form>
@@ -52,7 +49,7 @@ class Form extends Component<any, any> {
             id={"buy"}
             name={"transactionType"}
             value={"buy"}
-            checked={transactionType === "last bought"}
+            checked={TransactionType === "bought"}
             onChange={this.handleBuy}
           />
           <label htmlFor={"sell"}>sell transaction</label>
@@ -61,7 +58,7 @@ class Form extends Component<any, any> {
             id={"sell"}
             name={"transactionType"}
             value={"sell"}
-            checked={transactionType === "last sold"}
+            checked={TransactionType === "sold"}
             onChange={this.handleSell}
           />
         </div>
