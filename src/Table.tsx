@@ -15,33 +15,16 @@ const TableHeader = () => {
 const TableBody = (props: {
   tradeLogData: any[];
   removeTradeLog: (arg0: any) => void;
+  editRow: (arg0: any, arg1: any, arg3: any) => void;
 }) => {
   const rows = props.tradeLogData.map(
     (
       row: {
-        symbol:
-          | boolean
-          | React.ReactChild
-          | React.ReactFragment
-          | React.ReactPortal
-          | null
-          | undefined;
-        orderDate:
-          | boolean
-          | React.ReactChild
-          | React.ReactFragment
-          | React.ReactPortal
-          | null
-          | undefined;
-        transactionType:
-          | boolean
-          | React.ReactChild
-          | React.ReactFragment
-          | React.ReactPortal
-          | null
-          | undefined;
+        symbol: string;
+        orderDate: Date;
+        transactionType: string;
       },
-      index: React.Key | null | undefined
+      index: number
     ) => {
       return (
         <tr key={index}>
@@ -49,6 +32,13 @@ const TableBody = (props: {
           <td>{row.orderDate}</td>
           <td>{row.transactionType}</td>
           <td>
+            <button
+              onClick={() =>
+                props.editRow(row.symbol, row.orderDate, row.transactionType)
+              }
+            >
+              edit
+            </button>
             <button onClick={() => props.removeTradeLog(index)}>delete</button>
           </td>
         </tr>
@@ -59,13 +49,21 @@ const TableBody = (props: {
   return <tbody>{rows}</tbody>;
 };
 
-const Table = (props: { tradeLogData: any; removeTradeLog: any }) => {
-  const { tradeLogData, removeTradeLog } = props;
+const Table = (props: {
+  tradeLogData: any;
+  removeTradeLog: any;
+  editRow: any;
+}) => {
+  const { tradeLogData, removeTradeLog, editRow } = props;
 
   return (
     <table>
       <TableHeader />
-      <TableBody tradeLogData={tradeLogData} removeTradeLog={removeTradeLog} />
+      <TableBody
+        tradeLogData={tradeLogData}
+        removeTradeLog={removeTradeLog}
+        editRow={editRow}
+      />
     </table>
   );
 };
