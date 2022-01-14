@@ -1,4 +1,4 @@
-import type { Row } from "./Types";
+import type { Row } from "./types";
 
 const TableHeader = () => {
   return (

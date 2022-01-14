@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import type { TransactionType } from "./Types";
+import type { TransactionType } from "./types";
 
 // any, any --> Props, State
 class Form extends Component<any, any> {
