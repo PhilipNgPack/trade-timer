@@ -1,26 +1,23 @@
-import React, { Component, useState } from "react";
+import { Component, useState } from "react";
 import Table from "./Table";
 import Form from "./Form";
+import type { Trade } from "./types";
 
 export const EditTrade = () => {
-  const initialFormState = {
-    id: null,
+  const initialFormStateForTradeLogBeingEdited = {
+    id: -1,
     symbol: "",
-    orderDate: "",
+    orderDate: new Date(),
     transactionType: "",
   };
-  // initial form state for currentlyEdit
-  const [tradeLogBeingEdited, setTradeLogBeingEdited] =
-    useState(initialFormState);
 
-  const editRow = (trade: any) => {
+  const [tradeLogBeingEdited, setTradeLogBeingEdited] = useState(
+    initialFormStateForTradeLogBeingEdited
+  );
+
+  const editRow = (trade: Trade) => {
     console.log("Hello world!");
-    setTradeLogBeingEdited({
-      id: trade.id,
-      symbol: trade.symbol,
-      orderDate: trade.orderDate,
-      transactionType: trade.transactionType,
-    });
+    setTradeLogBeingEdited(trade);
   };
 };
 

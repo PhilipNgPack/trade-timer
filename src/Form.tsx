@@ -2,11 +2,17 @@ import React, { Component } from "react";
 import type { TransactionType } from "./types";
 
 // any, any --> Props, State
+
+interface Props {
+  (symbol: string, orderDate: string): "";
+}
+
 class Form extends Component<any, any> {
+  transactionType: TransactionType = "bought";
+
   initialState = {
     symbol: "",
     orderDate: "",
-    TransactionType: "buy",
   };
 
   state = this.initialState;
@@ -16,7 +22,8 @@ class Form extends Component<any, any> {
 
     this.setState({
       [name]: value,
-      TransactionType: [value == "buy" ? "bought" : "sold"],
+
+      // this.transactionType: value == "buy" ? "bought" : "sold"
     });
   };
 
@@ -26,7 +33,7 @@ class Form extends Component<any, any> {
   };
 
   render() {
-    const { symbol, orderDate, TransactionType } = this.state;
+    const { symbol, orderDate } = this.state;
 
     return (
       <form>
@@ -37,7 +44,7 @@ class Form extends Component<any, any> {
             id={"buy"}
             name={"transactionType"}
             value={"buy"}
-            checked={TransactionType === "bought"}
+            checked={this.transactionType === "bought"}
             onChange={this.handleChange}
           />
           <label htmlFor={"sell"}>sell transaction</label>
@@ -46,7 +53,7 @@ class Form extends Component<any, any> {
             id={"sell"}
             name={"transactionType"}
             value={"sell"}
-            checked={TransactionType === "sold"}
+            checked={this.transactionType === "sold"}
             onChange={this.handleChange}
           />
         </div>
