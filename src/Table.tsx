@@ -1,4 +1,4 @@
-import type { Row } from "./types";
+import type { Row, Trade } from "./types";
 
 const TableHeader = () => {
   return (
@@ -13,15 +13,15 @@ const TableHeader = () => {
 };
 
 interface Props {
-  tradeLogData: any;
-  removeTradeLog: any;
+  loggedTrades: Trade[];
+  removeLoggedTrade: any;
   editRow: any;
 }
 
 const Table = (props: Props) => {
   const TableBody = (
     <tbody>
-      {props.tradeLogData.map((row: Row, index: number) => {
+      {props.loggedTrades.map((row: Row, index: number) => {
         return (
           <tr key={index}>
             <td>{row.symbol}</td>
@@ -35,7 +35,7 @@ const Table = (props: Props) => {
               >
                 edit
               </button>
-              <button onClick={() => props.removeTradeLog(index)}>
+              <button onClick={() => props.removeLoggedTrade(index)}>
                 delete
               </button>
             </td>

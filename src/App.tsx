@@ -23,35 +23,30 @@ export const EditTrade = () => {
 
 class App extends Component {
   state = {
-    tradeLogs: [],
+    loggedTrades: [] as Trade[],
   };
 
-  removeTradeLog = (index: number) => {
-    const { tradeLogs } = this.state;
-
+  removeLoggedTrade = (index: number) => {
+    const { loggedTrades } = this.state;
     this.setState({
-      tradeLogs: tradeLogs.filter((tradeLog: any, i: number) => {
+      loggedTrades: loggedTrades.filter((loggedTrade: Trade, i: number) => {
         return i !== index;
       }),
     });
   };
 
-  // updateRow = (tradeLog: any) => {
-  //   setEditing(false);
-  // };
-
-  handleAdd = (tradeLog: any) => {
-    this.setState({ tradeLogs: [...this.state.tradeLogs, tradeLog] });
+  handleAdd = (loggedTrade: Trade) => {
+    this.setState({ loggedTrades: [...this.state.loggedTrades, loggedTrade] });
   };
 
   render() {
-    const { tradeLogs } = this.state;
+    const { loggedTrades } = this.state;
 
     return (
       <div className="container">
         <Table
-          tradeLogData={tradeLogs}
-          removeTradeLog={this.removeTradeLog}
+          loggedTrades={loggedTrades}
+          removeLoggedTrade={this.removeLoggedTrade}
           editRow={EditTrade}
         />
         <Form handleAdd={this.handleAdd} />
