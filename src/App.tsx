@@ -3,23 +3,13 @@ import Table from "./Table";
 import Form from "./Form";
 
 export const EditTrade = () => {
-  const [editing, setEditing] = useState(false);
-  const initialFormState = {
-    id: null,
-    symbol: "",
-    orderDate: "",
-    transactionType: "",
-  };
-  const [currentTradeLog, setCurrentTradeLog] = useState(initialFormState);
+  // initial form state for currentlyEdit
+  const [currentlyEditTradeLog, setCurrentlyEditTradeLog] = useState(
+    tradelog | undefined
+  );
 
   const editRow = (trade: any) => {
-    setEditing(true);
-    setCurrentTradeLog({
-      id: trade.id,
-      symbol: trade.symbol,
-      orderDate: trade.orderDate,
-      transactionType: trade.transactionType,
-    });
+    setCurrentlyEditTradeLog(trade);
   };
 };
 
@@ -37,6 +27,10 @@ class App extends Component {
       }),
     });
   };
+
+  // updateRow = (tradeLog: any) => {
+  //   setEditing(false);
+  // };
 
   handleAdd = (tradeLog: any) => {
     this.setState({ tradeLogs: [...this.state.tradeLogs, tradeLog] });

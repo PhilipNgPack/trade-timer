@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import type { Row } from "./Types";
 
 const TableHeader = () => {
   return (
@@ -12,42 +13,11 @@ const TableHeader = () => {
   );
 };
 
-const TableBody = (props: {
-  tradeLogData: any[];
-  removeTradeLog: (arg0: any) => void;
-  editRow: (arg0: any, arg1: any, arg3: any) => void;
-}) => {
-  const rows = props.tradeLogData.map(
-    (
-      row: {
-        symbol: string;
-        orderDate: Date;
-        transactionType: string;
-      },
-      index: number
-    ) => {
-      return (
-        <tr key={index}>
-          <td>{row.symbol}</td>
-          <td>{row.orderDate}</td>
-          <td>{row.transactionType}</td>
-          <td>
-            <button
-              onClick={() =>
-                props.editRow(row.symbol, row.orderDate, row.transactionType)
-              }
-            >
-              edit
-            </button>
-            <button onClick={() => props.removeTradeLog(index)}>delete</button>
-          </td>
-        </tr>
-      );
-    }
-  );
-
-  return <tbody>{rows}</tbody>;
-};
+interface Props {
+  tradeLogData: any;
+  removeTradeLog: any;
+  editRow: any;
+}
 
 const Table = (props: {
   tradeLogData: any;
@@ -56,14 +26,35 @@ const Table = (props: {
 }) => {
   const { tradeLogData, removeTradeLog, editRow } = props;
 
+  const TableBody = (
+    <tbody>
+      {tradeLogData.map((row: Row, index: number) => {
+        return (
+          <tr key={index}>
+            <td>{row.symbol}</td>
+            <td>{row.orderDate}</td>
+            <td>{row.transactionType}</td>
+            <td>
+              <button
+                onClick={() =>
+                  props.editRow(row.symbol, row.orderDate, row.transactionType)
+                }
+              >
+                edit
+              </button>
+              <button onClick={() => props.removeTradeLog(index)}>
+                delete
+              </button>
+            </td>
+          </tr>
+        );
+      })}
+    </tbody>
+  );
+
   return (
     <table>
       <TableHeader />
-      <TableBody
-        tradeLogData={tradeLogData}
-        removeTradeLog={removeTradeLog}
-        editRow={editRow}
-      />
     </table>
   );
 };
