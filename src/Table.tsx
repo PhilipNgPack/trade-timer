@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { Trade } from "./types";
 
 const TableHeader = () => {
@@ -18,7 +19,7 @@ interface Props {
   editTrade: () => void;
 }
 
-const Table = (props: Props) => {
+export const Table = (props: Props) => {
   return (
     <table>
       <TableHeader />
@@ -43,4 +44,19 @@ const Table = (props: Props) => {
   );
 };
 
-export default Table;
+export const EditTrade = () => {
+  const initialFormStateForTradeLogBeingEdited = {
+    id: 1,
+    symbol: "",
+    orderDate: "",
+    transactionType: "",
+  };
+
+  const [tradeLogBeingEdited, setTradeLogBeingEdited] = useState(
+    initialFormStateForTradeLogBeingEdited
+  );
+
+  const editRow = (trade: Trade) => {
+    setTradeLogBeingEdited(trade);
+  };
+};

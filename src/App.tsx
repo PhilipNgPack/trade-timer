@@ -1,24 +1,7 @@
-import { Component, useState } from "react";
-import Table from "./Table";
+import { Component } from "react";
+import { Table, EditTrade } from "./Table";
 import Form from "./Form";
 import type { Trade } from "./types";
-
-export const EditTrade = () => {
-  const initialFormStateForTradeLogBeingEdited = {
-    id: 1,
-    symbol: "",
-    orderDate: "",
-    transactionType: "",
-  };
-
-  const [tradeLogBeingEdited, setTradeLogBeingEdited] = useState(
-    initialFormStateForTradeLogBeingEdited
-  );
-
-  const editRow = (trade: Trade) => {
-    setTradeLogBeingEdited(trade);
-  };
-};
 
 class App extends Component {
   state = {
