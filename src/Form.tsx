@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import type { TransactionType, Trade } from "./types";
-
-// any, any --> Props, State
+import type { Trade } from "./types";
 
 interface Props {
   handleAdd: any;
@@ -9,9 +7,10 @@ interface Props {
 
 class Form extends Component<Props> {
   emptyFormData = {
+    id: 0,
     symbol: "",
     orderDate: "",
-    transactionType: "bought",
+    transactionType: "buy",
   };
 
   state = this.emptyFormData;
@@ -21,7 +20,7 @@ class Form extends Component<Props> {
 
     this.setState({
       [name]: value,
-      transactionType: value == "buy" ? "bought" : "sold",
+      transactionType: value == "sell" ? "sold" : "bought",
     });
   };
 
@@ -35,27 +34,6 @@ class Form extends Component<Props> {
 
     return (
       <form>
-        <div className="transactionType">
-          <label htmlFor={"buy"}>buy transaction</label>
-          <input
-            type={"radio"}
-            id={"buy"}
-            name={"transactionType"}
-            value={"buy"}
-            checked={this.state.transactionType === "bought"}
-            onChange={this.handleChange}
-          />
-          <label htmlFor={"sell"}>sell transaction</label>
-          <input
-            type={"radio"}
-            id={"sell"}
-            name={"transactionType"}
-            value={"sell"}
-            checked={this.state.transactionType === "sold"}
-            onChange={this.handleChange}
-          />
-        </div>
-
         <div className="symbol">
           <label htmlFor={"symbol"}>symbol</label>
           <input
@@ -77,6 +55,29 @@ class Form extends Component<Props> {
             onChange={this.handleChange}
           />
         </div>
+
+        <div className="transactionType">
+          <label htmlFor={"buy"}>buy transaction</label>
+          <input
+            type={"radio"}
+            id={"buy"}
+            name={"transactionType"}
+            value={"buy"}
+            checked={this.state.transactionType === "bought"}
+            onChange={this.handleChange}
+          />
+
+          <label htmlFor={"sell"}>sell transaction</label>
+          <input
+            type={"radio"}
+            id={"sell"}
+            name={"transactionType"}
+            value={"sell"}
+            checked={this.state.transactionType === "sold"}
+            onChange={this.handleChange}
+          />
+        </div>
+
         <input type={"button"} value={"add"} onClick={this.submitForm} />
       </form>
     );

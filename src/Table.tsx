@@ -1,4 +1,4 @@
-import type { Row, Trade } from "./types";
+import type { Trade } from "./types";
 
 const TableHeader = () => {
   return (
@@ -14,8 +14,8 @@ const TableHeader = () => {
 
 interface Props {
   loggedTrades: Trade[];
-  removeLoggedTrade: any;
-  editTrade: any;
+  removeLoggedTrade: (index: number) => void;
+  editTrade: () => void;
 }
 
 const Table = (props: Props) => {
