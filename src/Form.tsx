@@ -4,32 +4,36 @@ import type { TransactionType } from "./types";
 // any, any --> Props, State
 
 interface Props {
-  (symbol: string, orderDate: string): "";
+  handleAdd: any;
 }
 
-class Form extends Component<any, any> {
-  transactionType: TransactionType = "bought";
+interface State {
+  symbol: string;
+  orderDate: string;
+  transactionType: TransactionType;
+}
 
-  initialState = {
+class Form extends Component<Props, any> {
+  emptyFormData = {
     symbol: "",
     orderDate: "",
+    transactionType: "bought",
   };
 
-  state = this.initialState;
+  state = this.emptyFormData;
 
   handleChange = (event: { target: { name: string; value: string } }) => {
     const { name, value } = event.target;
 
     this.setState({
       [name]: value,
-
-      // this.transactionType: value == "buy" ? "bought" : "sold"
+      transactionType: value == "buy" ? "bought" : "sold",
     });
   };
 
   submitForm = () => {
     this.props.handleAdd(this.state);
-    this.setState(this.initialState);
+    this.setState(this.emptyFormData);
   };
 
   render() {
@@ -44,7 +48,7 @@ class Form extends Component<any, any> {
             id={"buy"}
             name={"transactionType"}
             value={"buy"}
-            checked={this.transactionType === "bought"}
+            checked={this.state.transactionType === "bought"}
             onChange={this.handleChange}
           />
           <label htmlFor={"sell"}>sell transaction</label>
@@ -53,7 +57,7 @@ class Form extends Component<any, any> {
             id={"sell"}
             name={"transactionType"}
             value={"sell"}
-            checked={this.transactionType === "sold"}
+            checked={this.state.transactionType === "sold"}
             onChange={this.handleChange}
           />
         </div>

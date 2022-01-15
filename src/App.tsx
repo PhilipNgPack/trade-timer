@@ -16,7 +16,6 @@ export const EditTrade = () => {
   );
 
   const editRow = (trade: Trade) => {
-    console.log("Hello world!");
     setTradeLogBeingEdited(trade);
   };
 };
@@ -47,7 +46,7 @@ class App extends Component {
         <Table
           loggedTrades={loggedTrades}
           removeLoggedTrade={this.removeLoggedTrade}
-          editRow={EditTrade}
+          editTrade={EditTrade}
         />
         <Form handleAdd={this.handleAdd} />
       </div>
