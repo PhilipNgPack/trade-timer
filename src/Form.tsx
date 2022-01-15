@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import type { Trade } from "./types";
 
 interface Props {
-  handleAdd: any;
+  handleAdd: (loggedTrade: Trade) => void;
 }
 
 class Form extends Component<Props> {

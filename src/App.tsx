@@ -7,7 +7,7 @@ export const EditTrade = () => {
   const initialFormStateForTradeLogBeingEdited = {
     id: 1,
     symbol: "",
-    orderDate: new Date(),
+    orderDate: "",
     transactionType: "",
   };
 

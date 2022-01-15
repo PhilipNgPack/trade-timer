@@ -9,6 +9,6 @@ export interface Row {
 export interface Trade {
   id: number;
   symbol: string;
-  orderDate: Date;
-  transactionType: TransactionType;
+  orderDate: string;
+  transactionType: string;
 }
