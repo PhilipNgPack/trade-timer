@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import type { TransactionType } from "./types";
+import type { TransactionType, Trade } from "./types";
 
 // any, any --> Props, State
 
@@ -7,13 +7,7 @@ interface Props {
   handleAdd: any;
 }
 
-interface State {
-  symbol: string;
-  orderDate: string;
-  transactionType: TransactionType;
-}
-
-class Form extends Component<Props, any> {
+class Form extends Component<Props> {
   emptyFormData = {
     symbol: "",
     orderDate: "",
